@@ -6,5 +6,9 @@
 # - 5 -> нет
 # - 0,34 -> 3
 
-one_number = float(input('Введите дробное число: '))
-print(int((one_number * 10) % 10))
+input_number = float(input('Введите дробное число: '))
+result_number = int((input_number * 10) % 10)
+if result_number != 0:
+    print(f'- {input_number} -> {result_number}')
+else:
+    print(f'- {int(input_number)} -> нет')
