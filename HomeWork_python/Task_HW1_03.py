@@ -9,7 +9,7 @@
 # - x=-34; y=-30 -> 3
 
 input_one_number = float(input('Введите координату X: '))
-input_two_number = float(input('Введите координату X: '))
+input_two_number = float(input('Введите координату Y: '))
 if input_one_number > 0 and input_two_number > 0:
     number = 1
 elif input_one_number < 0 and input_two_number > 0:
