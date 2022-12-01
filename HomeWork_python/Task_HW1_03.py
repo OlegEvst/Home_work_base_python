@@ -10,13 +10,17 @@
 
 input_one_number = float(input('Введите координату X: '))
 input_two_number = float(input('Введите координату Y: '))
-if input_one_number > 0 and input_two_number > 0:
-    number = 1
-elif input_one_number < 0 and input_two_number > 0:
-    number = 2
-elif input_one_number < 0 and input_two_number < 0:
-    number = 3
+if input_one_number == 0 or input_two_number == 0:
+    print(f"Данные не валидны")
 else:
-    number = 4
-print(f"Точка находится в {number} четверти")
+    if input_one_number > 0 and input_two_number > 0:
+        number = 1
+    elif input_one_number < 0 and input_two_number > 0:
+        number = 2
+    elif input_one_number < 0 and input_two_number < 0:
+        number = 3
+    else:
+        number = 4
+    print(f"Точка находится в {number} четверти")
+    
 
