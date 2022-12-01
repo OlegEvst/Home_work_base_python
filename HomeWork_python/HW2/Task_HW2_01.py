@@ -8,7 +8,8 @@
 def get_float(string_number):
     while True:
         try:
-            number = float(input(string_number)) or number != 0
+            number = float(input(string_number))
+            assert number != 0
             return number
         except:
             print('Пожалуйста, введите вещественное число и не равное 0:')
