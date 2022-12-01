@@ -14,4 +14,7 @@ match switcher:
         message = 'x ∈ (0,-∞) u y ∈ (0,-∞)'
     case 4:
         message = 'x ∈ (0, ∞) u y ∈ (0,-∞)'
-print(f'Возможные координаты -> {message}')
+    case _:  
+        message = ''
+print(f'Возможные координаты -> {message}' if message != '' 
+        else 'Введите от 1 до 4, данные не валидны')
