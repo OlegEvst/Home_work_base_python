@@ -3,7 +3,7 @@
 # ['gfh5', 'gfh2', '67', 'jy32', '3put'] - ищем 32 - находим по индексу 3
 
 input_list = ['gfh5', 'gfh2', '67', 'jy32', '3put']
-test_1 = 67
+test_1 = 3
 
 def get_number(user_list, user_number):
     for char in user_list:
