@@ -36,7 +36,7 @@ def give_list_int(input_string: str):
         _type_: list
     """
 
-def give_list_randon(user_number: int, min, max):
+def give_list_random(user_number: int, min, max):
     random_list = []
     for i in range(1, user_number + 1):
         random_list.append(randint(min, max))
