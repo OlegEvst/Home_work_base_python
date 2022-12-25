@@ -28,7 +28,6 @@ def give_str(input_string):
         """
 
 def get_number_alphabet(filename: str) -> list[str]:
-    
     with open(filename,'r', encoding="utf8") as file: 
         atribute = file.read().rstrip().split('\n')
         for i in atribute:

@@ -33,14 +33,10 @@ def get_user_data(filename: str):
             while i + 1 < len(atribute) and atribute[i] == atribute[i + 1]:
                 count = count + 1
                 i = i + 1
+            count = '' if count == 1 else count
             encoding += str(count) + atribute[i]
-            i = i + 1
-            next = ''
-            for j in encoding:
-                if j != '1':
-                    next += j    
- 
-    print(next)
+            i = i + 1 
+    print(encoding)
  
 string = give_str('Введите слово:')
 users = write_user_data('HomeWork_python\HW4/user_data.txt', string)
