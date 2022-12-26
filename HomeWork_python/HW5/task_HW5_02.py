@@ -45,6 +45,18 @@ def give_int(input_string: str,
                   '\033[1;31m Введите 2 - если хотите поиграть с лёгким ботом \033[0m\n'
                   '\033[1;31m Введите 3 - если хотите поиграть со сложным ботом \033[0m\n')
 
+"""Функция принемает значения для функционала меню,
+        проверяет валидность и возвращает режим игры
+
+    Args:
+        input_string (str): string
+        min_num (Optional[int], optional): _description_. Defaults to 1.
+        max_num (Optional[int], optional): _description_. Defaults to 4.
+
+    Returns:
+        int: integer
+    """       
+
 def valid_name(input_string: str):
     while True:
         try:
@@ -53,6 +65,15 @@ def valid_name(input_string: str):
                 return string
         except ValueError:
             print('033[1;31m Введите валидное имя\033[0m')
+
+"""_Функция принемает валидность вводимого имени
+
+    Args:
+        input_string (str): string
+
+    Returns:
+        string: Валидное имя
+    """
 
 def give_player(user_type_game: int):
     if user_type_game == 1:
@@ -71,6 +92,17 @@ def give_player(user_type_game: int):
         user_two = 'Сложный БОТ'
         print(f'С вами играет - \033[1;31m{user_two}\033[0m\n')
     return user_one, user_two, user_type_game
+"""Функция получает int и назначает игроков в зависимости от режима игры (1 - Игорк против игрока;
+2 - Игорк против лёгкого бота, 3 - Игрок против сложного бота)
+
+    Args:
+        user_type_game (int): Режим игры
+
+    Returns:
+        _string_: Имя первого игрока
+        _string_: Имя второго игрока
+        _int_: Режим игры
+    """
 
 def first_move(user_name: str):
     move_random = randint(0, 2)
@@ -90,10 +122,20 @@ def first_move(user_name: str):
             print(f"Первый ходит \033[1;35m{user_name[1]}\033[0m.")
             switch = 0
     return switch
+"""Функция получает игроков и определяет с помощью рандом функции первый ход, 
+    если это 3 режим игры, то для первого хода необходимо True две рандомных функции  
+
+    Args:
+        user_name (str): игроки
+
+    Returns:
+        int_: порядок хода
+    """
 
 def algorithm_game_user(gamers, count):
-    value_candies = 221
+    value_candies = 2021
     max_candies = 28
+    motion = 0
     while value_candies > 0:
         if count == 1:
             motion = int(input(f'\n{gamers[0]} заберёт = '))
@@ -112,9 +154,100 @@ def algorithm_game_user(gamers, count):
                 print(f'\nОсталось {value_candies}')
                 count = 1
     print(f'\n\033[1;31mПобедил --> {gamers[0]}\033[0m') if count == 1 else print(f'\n\033[1;31mПобедил --> {gamers[1]}\033[0m')
+"""Функция приемает игроков и очередь хода. По очереди игроки забирают конфоты, но не более 28 за ход.
+    побеждает тот, кто последний забирает конфеты со стола. Переключение выполняется через count.
+
+    Args:
+        gamers string: игроки
+        count ineger: последовательность хода
+    """
+
+def algorithm_easy_bot(gamers, count):
+    value_candies = 2021
+    max_candies = 28
+    motion = 0
+    while value_candies > 0:
+        if count == 1:
+            motion = int(input(f'\n{gamers[0]} заберёт = '))
+            while motion < 1 or motion > max_candies:
+                motion = int(input(f'\n\033[1;31m{gamers[0]} - Можно взять не более {max_candies} конфет за ход! :\033[0m'))
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 0
+        if count == 0:
+            motion = randint(1,28)
+            print(f'\n{gamers[1]} заберёт = {motion} ')
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 1
+    print(f'\n\033[1;31mПобедил --> {gamers[0]}\033[0m') if count == 1 else print(f'\n\033[1;31mПобедил --> {gamers[1]}\033[0m')
+"""Функция приемает игроков и очередь хода. По очереди игрок и бот забирают конфоты, но не более 28 за ход.
+    побеждает тот, кто последний забирает конфеты со стола. Переключение выполняется через count.
+    Бот забирает рандомное количество конфет за ход.
+
+    Args:
+        gamers string: игроки
+        count ineger: последовательность хода
+    """   
+
+def algorithm_hard_bot(gamers, count):
+    value_candies = 2021
+    max_candies = 28
+    motion = 0
+    while value_candies > 0:
+        if count == 1:
+            motion = int(input(f'\n{gamers[0]} заберёт = '))
+            while motion < 1 or motion > max_candies:
+                motion = int(input(f'\n\033[1;31m{gamers[0]} - Можно взять не более {max_candies} конфет за ход! :\033[0m'))
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 0
+        if count == 0:
+            if value_candies < 29:
+                motion = value_candies
+            else:
+                delenie = value_candies//28
+                motion = value_candies - ((delenie*max_candies)+1)
+                if motion == -1:
+                    motion = max_candies -1
+                if motion == 0:
+                    motion = max_candies
+            while motion > 28 or motion < 1:
+                motion = randint(1,28)
+            print(f'\n{gamers[1]} заберёт = {motion} ')
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 1
+    print(f'\n\033[1;31mПобедил --> {gamers[0]}\033[0m') if count == 1 else print(f'\n\033[1;31mПобедил --> {gamers[1]}\033[0m')
+"""Функция приемает игроков и очередь хода. По очереди игрок и бот забирают конфоты, но не более 28 за ход.
+    побеждает тот, кто последний забирает конфеты со стола. Переключение выполняется через count.
+    Бот забирает количество конфет за ход исходя из остатка от деления на 28.
+    
+    Args:
+        gamers string: игроки
+        count ineger: последовательность хода
+    """   
 
 number = give_int('Поле ввода: ')
 players = give_player(number)
 move = first_move(players)
-result_user = algorithm_game_user(players, move)
+
+if number == 1:
+    result_user = algorithm_game_user(players, move)
+elif number == 2:
+    result_bot = algorithm_easy_bot(players, move)
+else:
+    result_hard_bot = algorithm_hard_bot(players, move)
+    
+
+# Программа не идеальна, много дублирования кода. Буду улучшать.
+
+
+
+
+
 
