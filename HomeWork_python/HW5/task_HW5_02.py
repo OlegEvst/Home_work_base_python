@@ -9,13 +9,6 @@
 # a) Добавьте игру против бота
 # b) Подумайте как наделить бота ""интеллектом""
 
-# 1- превественное сообщение
-# 2 - выбор режима игры (1- игрок против игрока, 2 - лёгкий бот 
-# (который не счиатеет коллличство конфет который забрал его оппонент и рандомно вычитает ))
-# (3- сложный бот, который счиатет колличство конфет и считает остаток от деления)
-# 3 - алгоритм переключения игроков\ботов
-# 4 - конец игры
-
 from typing import Optional
 from random import randint
 
@@ -68,7 +61,7 @@ def give_player(user_type_game: int):
         user_two = valid_name('Введите имя игрока 2:')
         print(f'\033[1;32m{user_two}\033[0m - Хорошей игры!\n')
     elif user_type_game == 2:
-        user_one = valid_name('Введите выше имя:')
+        user_one = valid_name('Введите ваше имя:')
         print(f'\033[1;32m{user_one}\033[0m - Хорошей игры!')
         user_two = 'Легкий БОТ'
         print(f'С вами играет - \033[1;32m{user_two}\033[0m\n')
@@ -98,16 +91,30 @@ def first_move(user_name: str):
             switch = 0
     return switch
 
-
-
-     
+def algorithm_game_user(gamers, count):
+    value_candies = 221
+    max_candies = 28
+    while value_candies > 0:
+        if count == 1:
+            motion = int(input(f'\n{gamers[0]} заберёт = '))
+            while motion < 1 or motion > max_candies:
+                motion = int(input(f'\n\033[1;31m{gamers[0]} - Можно взять не более {max_candies} конфет за ход! :\033[0m'))
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 0
+        if count == 0:
+            motion = int(input(f'\n{gamers[1]} заберёт = '))
+            while motion < 1 or motion > max_candies:
+                motion = int(input(f'\n\033[1;31m{gamers[1]} - Можно взять не более {max_candies} конфет за ход! :\033[0m'))
+        value_candies -= motion
+        if value_candies > 0:
+                print(f'\nОсталось {value_candies}')
+                count = 1
+    print(f'\n\033[1;31mПобедил --> {gamers[0]}\033[0m') if count == 1 else print(f'\n\033[1;31mПобедил --> {gamers[1]}\033[0m')
 
 number = give_int('Поле ввода: ')
 players = give_player(number)
 move = first_move(players)
-
-
-
-
-
+result_user = algorithm_game_user(players, move)
 
