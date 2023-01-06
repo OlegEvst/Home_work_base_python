@@ -14,7 +14,7 @@ def give_list(user_number: int):
         if enumerate_list[i][0] != enumerate_list[i][1]:
             number_list.append(enumerate_list[i][0])
             value_list.append(enumerate_list[i][1])
-        result_list = [list(zip(number_list,value_list))]
+        result_list = list(zip(number_list,value_list))
     return random_list, enumerate_list, result_list
 """Функция принемает число и возвращает 3 списка
     Args:
@@ -24,7 +24,7 @@ def give_list(user_number: int):
         random_list (list): Рандомный список целых чисел
         enumerate_list (list): Список картежей
         result_list (list): Отфильтрованный список по условию
-    """ 
-random_user_list = give_list(200)
+""" 
+random_user_list = give_list(10)
 print(f'{random_user_list[0]} -->\033[1;31m{random_user_list[1]}\033[0m --> \033[1;33m{random_user_list[2]}\033[0m')
 
