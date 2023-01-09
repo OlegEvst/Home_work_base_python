@@ -31,29 +31,3 @@ user_string = str(input('Введите искомое значение:'))
 task_print = give_index(user_list, user_string)
 
 print(f'список: {user_list}, ищем: {user_string}, ответ: {task_print[1]}') if len(task_print) > 1 else print(f'список: {user_list}, ищем: {user_string}, ответ: {-1}')
-
-
-
-
-
-
-
-
-
-
-
-
-# y = filter(lambda x: (x == 'qwe'), (user_list))
-
-# if len(list(y)) > 1:
-#     print(user_list.index(list(y))) 
-
-
-# # print(len(list(y)))
-
-# # print(user_list.index(list(y)))
-# # index = user_list.index(y)
-# # print('The index of e:', index)
-# # list.index(element)
-# # print(list(y))
-
