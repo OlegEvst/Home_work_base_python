@@ -12,6 +12,14 @@ def add_users(number):
         }
         all_users.append(new_user)
     return all_users
+"""Функция собирает список из словарей, который содержит id, name, surname, date, work
+
+    Args:
+       new_user _dict_: Словарь с данными пользователя
+
+    Returns:
+       all_users_: Список со словорями
+"""
 
         
 
